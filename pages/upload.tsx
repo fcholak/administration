@@ -4,7 +4,7 @@ import SingleFileUploadForm from "../components/SingleFileUploadForm";
 export default function UploadForm() {
   return (
     <Row
-      style={{ height: "100vh", overflow: "hidden" }}
+      style={{ height: "80vh", overflow: "hidden" }}
       justify="center"
       align="middle"
     >

@@ -29,7 +29,7 @@ const SingleFileUploadForm = () => {
       console.error(e);
     }
 
-    message.success(`The document was uploaded successfully!`);
+    message.success(`Документот е успешно прикачен!`);
     onReset();
   };
 
@@ -40,18 +40,25 @@ const SingleFileUploadForm = () => {
           <Upload
             name="file"
             accept=".rtf,.docx"
+            maxCount={1}
+            multiple={false}
             onChange={handleFileChange}
             showUploadList={false}
-            beforeUpload={() => false}
+            beforeUpload={(file) => {
+              if (file.type !== "text/rtf") {
+                message.error(`Please provide a document in .rtf format!`);
+                return false;
+              }
+            }}
           >
             <Button>
-              <UploadOutlined /> Click to upload
+              <UploadOutlined /> Избери документ
             </Button>
           </Upload>
         </FormItem>
         <FormItem>
           <Button type="primary" htmlType="submit" disabled={!file}>
-            Upload
+            Прикачи
           </Button>
         </FormItem>
       </Form>
