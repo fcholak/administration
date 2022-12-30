@@ -1,7 +1,7 @@
 import { BlobServiceClient } from "@azure/storage-blob";
 import { useEffect, useState } from "react";
 import { getBlobsInContainer } from "../lib/storage";
-import { Table, message } from "antd";
+import { Table } from "antd";
 import type { BlobData } from "../lib/storage";
 
 export default function ManageDocuments() {
@@ -19,9 +19,6 @@ export default function ManageDocuments() {
       );
       const containerClient = blobService.getContainerClient(containerName);
       const blobs = await getBlobsInContainer(containerClient);
-      if (blobs.length > 0) {
-        message.success(`Successfully fetched ${blobs.length} documents.`);
-      }
       setBlobs(blobs);
     } catch (e: any) {
       console.error(e);
@@ -46,7 +43,7 @@ export default function ManageDocuments() {
       key: "url",
       render: (text: string, record: any) => (
         <a href="#" onClick={() => window.open(record.url)}>
-          Open in new window
+          DOWNLOAD
         </a>
       ),
     },

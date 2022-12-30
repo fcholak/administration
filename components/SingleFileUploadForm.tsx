@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Form, Input, Card, Button, Upload, message } from "antd";
+import React, { useState } from "react";
+import { Form, Card, Button, Upload, message } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 import uploadFileToBlob, { BlobData } from "../lib/storage";
 
@@ -25,7 +25,6 @@ const SingleFileUploadForm = () => {
     try {
       const blobs: BlobData[] = await uploadFileToBlob(file);
       setBlobs(blobs);
-      console.log(blobs);
     } catch (e) {
       console.error(e);
     }
@@ -49,9 +48,6 @@ const SingleFileUploadForm = () => {
               <UploadOutlined /> Click to upload
             </Button>
           </Upload>
-          {/* <span>
-            <FilePdfTwoTone style={{ marginLeft: "10px", fontSize: 16 }} />
-          </span> */}
         </FormItem>
         <FormItem>
           <Button type="primary" htmlType="submit" disabled={!file}>
