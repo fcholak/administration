@@ -4,7 +4,7 @@ import { getBlobsInContainer } from "../lib/storage";
 import { Table, message } from "antd";
 import type { BlobData } from "../lib/storage";
 import { GrDocumentRtf } from "react-icons/gr";
-import { DeleteOutlined } from "@ant-design/icons";
+import { TiDocumentDelete } from "react-icons/ti";
 
 export default function ManageDocuments() {
   const [blobs, setBlobs] = useState<BlobData[]>([]);
@@ -57,7 +57,7 @@ export default function ManageDocuments() {
       key: "2",
       render: (text: string, record: any) => (
         <a href="#" onClick={() => window.open(record.url)}>
-          <GrDocumentRtf />
+          <GrDocumentRtf fontSize={25} />
         </a>
       ),
     },
@@ -65,15 +65,15 @@ export default function ManageDocuments() {
       title: "Датум на прикачување",
       dataIndex: "createdOn",
       key: "3",
-      render: (text: string, record: any) => (
-        <span>{JSON.stringify(record.createdOn)}</span>
-      ),
+      render: (record: any) => <span>{JSON.stringify(record.createdOn)}</span>,
     },
     {
       title: "Акции",
       key: "4",
       render: (record: any) => {
-        return <DeleteOutlined onClick={() => onDelete(record)} />;
+        return (
+          <TiDocumentDelete fontSize={35} onClick={() => onDelete(record)} />
+        );
       },
     },
   ];
@@ -83,6 +83,11 @@ export default function ManageDocuments() {
       dataSource={blobs}
       loading={loading}
       rowKey="name"
+      pagination={{
+        position: ["bottomCenter"],
+        simple: false,
+        size: "small",
+      }}
     />
   );
 }

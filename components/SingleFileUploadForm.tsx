@@ -36,7 +36,7 @@ const SingleFileUploadForm = () => {
   return (
     <Card style={{ width: 400, margin: "0 auto" }}>
       <Form form={form} onSubmitCapture={handleSubmit}>
-        <FormItem label="Upload a .rtf or .docx file">
+        <FormItem label="Прикачи документ во .rtf или .docx формат">
           <Upload
             name="file"
             accept=".rtf,.docx"
@@ -46,7 +46,9 @@ const SingleFileUploadForm = () => {
             showUploadList={false}
             beforeUpload={(file) => {
               if (file.type !== "text/rtf") {
-                message.error(`Please provide a document in .rtf format!`);
+                message.error(
+                  `Документот МОРА да биде во .rtf или .docx формат!`
+                );
                 return false;
               }
             }}
